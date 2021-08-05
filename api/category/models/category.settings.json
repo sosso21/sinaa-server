@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "category",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "products": {
+      "via": "categories",
+      "collection": "product",
+      "dominant": true
+    },
+    "parent_category_list": {
+      "type": "component",
+      "repeatable": false,
+      "component": "custom.category-list"
+    },
+    "top_in_nav": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "top_in_page": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

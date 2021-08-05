@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main align='center'>
+        <h1 align="center">Confirm your email ! </h1>
+       <p> Hello %firstname% %lastname%. Thank you for your registration! , We are delighted to have you with us. </p>
+         <p> Before we start, we just need to confirm that this is you
+             <br> For that please just click on the link below to verify your e-mail address </p>
+         <a target="_blank" href="%linkAPI%/api/confirmEmail/%token%">%linkAPI%/api/confirmEmail/... </a>
+         <br>
+         <br>
+         <p> this link will expire in 15 minutes </p>
+         <br>
+         <p> if it's not about you please just ignore it.
+             <br> Yours.
+        </p>
+    </main>
+</body>
+
+</html>
+</html>
+ 

@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "name": "Clients",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "uid",
+      "required": true,
+      "private": false,
+      "minLength": 3
+    },
+    "lastname": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "firstname": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "pass": {
+      "type": "password",
+      "required": true,
+      "private": true
+    },
+    "phone": {
+      "type": "integer",
+      "minLength": 9
+    },
+    "birth_day": {
+      "type": "date"
+    },
+    "birth_place": {
+      "type": "string"
+    },
+    "sexe": {
+      "type": "enumeration",
+      "enum": [
+        "homme",
+        "femme",
+        "none"
+      ],
+      "default": "none",
+      "required": true
+    },
+    "wilaya": {
+      "type": "string"
+    },
+    "commune": {
+      "type": "string"
+    },
+    "profil_image_link": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "Twitter": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "blocked",
+        "waiting",
+        "valid"
+      ],
+      "required": true,
+      "default": "waiting"
+    },
+    "lastConnect": {
+      "type": "datetime",
+      "private": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main align='center'>
+        <h1 align="center">قم بتأكيد بريدك الإلكتروني!</h1>
+        <p> سلام %firstname% %lastname%.نشكرك على التسجيل! ، يسعدنا وجودك معنا. </p>
+        <p>قبل أن نبدأ ، نحتاج فقط إلى تأكيد أنك أنت
+             <br> لذلك ، يرجى النقر ببساطة على الرابط أدناه للتحقق من عنوان البريد الإلكتروني الخاص بك </p>
+        <a target="_blank" href="%linkAPI%/api/confirmEmail/%token% ">%linkAPI%/api/confirmEmail/... </a>
+        <br>
+        <br>
+        <p>ستنتهي صلاحية هذا الرابط خلال 15 دقيقة </p>
+        <br>
+        <p>إذا لم يكن الأمر متعلقًا بك ، فيرجى فقط تجاهله.
+             <br> تفضلوا بقبول فائق الاحترام.
+        </p>
+    </main>
+</body>
+
+</html>
+</html>
+ 
