@@ -1070,15 +1070,15 @@
           },
           "username": {
             "type": "uid",
-            "minLength": 3
+            "minLength": 2
           },
           "lastname": {
             "type": "string",
-            "minLength": 3
+            "minLength": 2
           },
           "firstname": {
             "type": "string",
-            "minLength": 3
+            "minLength": 2
           },
           "email": {
             "type": "string"
@@ -1149,15 +1149,15 @@
         "properties": {
           "username": {
             "type": "uid",
-            "minLength": 3
+            "minLength": 2
           },
           "lastname": {
             "type": "string",
-            "minLength": 3
+            "minLength": 2
           },
           "firstname": {
             "type": "string",
-            "minLength": 3
+            "minLength": 2
           },
           "email": {
             "type": "string"

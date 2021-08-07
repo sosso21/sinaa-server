@@ -16,17 +16,17 @@
       "type": "uid",
       "required": true,
       "private": false,
-      "minLength": 3
+      "minLength": 2
     },
     "lastname": {
       "type": "string",
       "required": true,
-      "minLength": 3
+      "minLength": 2
     },
     "firstname": {
       "type": "string",
       "required": true,
-      "minLength": 3
+      "minLength": 2
     },
     "email": {
       "type": "email",

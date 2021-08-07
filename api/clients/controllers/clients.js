@@ -157,8 +157,10 @@ module.exports = {
       lang
     } = ctx.request.body;
 
-
+    
     if (!verifyName(firstname) || !verifyName(lastname) || !verifyName(username) || username.includes(" ")) {
+      
+
       return ctx.send({
         error: "short name"
       });
