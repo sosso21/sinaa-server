@@ -27,46 +27,80 @@ const jwt_utils = require("../../functions/jwt.utils.js");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 
-const sendMeEmailToConfirm = (firstname, lastname, token, email, lang="en") => {
-  
-  return new Promise( (resolve, reject) => {
-  fs.readFile(
+const sendMeEmailToConfirm = (firstname, lastname, token, email, lang = "en") => {
 
-    __dirname + "/../../functions/templateEmail/confirmationReegister_" + lang + ".txt",
-    "utf-8",
-   async (err, data) => {
-      data = await data
-        .split("%firstname%")
-        .join(firstname)
-        .split("%lastname%")
-        .join(lastname)
-        .split("%linkAPI%")
-        .join(config.urlAPI)
-        .split("%token%")
-        .join(token);
-        let  object="";
-        if (lang=="fr") {
-          object="confirmez votre E-mail";
-        }else  if (lang=="ar") {
-          object="قم بتأكيد بريدك الإلكتروني";
-        }else{
-          object="confirm your E-mail";
+  return new Promise((resolve, reject) => {
+    fs.readFile(
+      __dirname + "/../../functions/templateEmail/confirmationReegister_" + lang + ".txt",
+      "utf-8",
+      async (err, data) => {
+        data = await data
+          .split("%firstname%")
+          .join(firstname)
+          .split("%lastname%")
+          .join(lastname)
+          .split("%linkAPI%")
+          .join(config.urlAPI)
+          .split("%token%")
+          .join(token);
+        let object = "";
+        if (lang == "fr") {
+          object = "confirmez votre E-mail";
+        } else if (lang == "ar") {
+          object = "قم بتأكيد بريدك الإلكتروني";
+        } else {
+          object = "confirm your E-mail";
         }
         sendEmail(email, object, data);
         resolve(true)
-    }
-  );
+      }
+    );
   })
 };
 const config = require("../../functions/config.js");
 const json_schema = require("../../functions/schema.js");
 
 
-const getPublicInfo=({email,firstname,_id,lastname,sexe,username, phone,birth_day,birth_place,wilaya,commune,profil_image_link,instagram,Twitter,facebook})=>{
-  return {email,firstname,_id,lastname,sexe,username, phone,birth_day,birth_place,wilaya,commune,profil_image_link,instagram,Twitter,facebook}
+const getPublicInfo = ({
+  email,
+  firstname,
+  _id,
+  lastname,
+  sexe,
+  username,
+  phone,
+  birth_day,
+  birth_place,
+  wilaya,
+  commune,
+  profil_image_link,
+  instagram,
+  Twitter,
+  facebook
+}) => {
+  return {
+    email,
+    firstname,
+    _id,
+    lastname,
+    sexe,
+    username,
+    phone,
+    birth_day,
+    birth_place,
+    wilaya,
+    commune,
+    profil_image_link,
+    instagram,
+    Twitter,
+    facebook
+  }
 }
 
-const extractInfo = ({token,...infos})=> infos ;
+const extractInfo = ({
+  token,
+  ...infos
+}) => infos;
 
 
 module.exports = {
@@ -79,16 +113,17 @@ module.exports = {
       });
     };
 
-    const success =async (infoUserAll) => {
-      const  infoUser =getPublicInfo(infoUserAll);
+    const success = async (infoUserAll) => {
+      const infoUser = getPublicInfo(infoUserAll);
       const token = jwt_utils.generateTokenForUser(infoUser, 3600 * 24 * 90, {
         ISO: ISO,
       });
 
-      await strapi.query("clients").update(
-        { _id: infoUser._id },
-        { lastConnect: new Date()}
-      );
+      await strapi.query("clients").update({
+        _id: infoUser._id
+      }, {
+        lastConnect: new Date()
+      });
 
       return ctx.send({
         token: token,
@@ -108,7 +143,7 @@ module.exports = {
       const infoUser = await strapi.query("clients").findOne({
         email: email,
       });
-      
+
       if (infoUser == null) {
         return error();
       }
@@ -157,9 +192,9 @@ module.exports = {
       lang
     } = ctx.request.body;
 
-    
+
     if (!verifyName(firstname) || !verifyName(lastname) || !verifyName(username) || username.includes(" ")) {
-      
+
 
       return ctx.send({
         error: "short name"
@@ -203,13 +238,18 @@ module.exports = {
       sexe: "none"
     });
 
-    const token = jwt_utils.generateTokenForUser(savedUser, 60 * 15,{email:savedUser.email} );
+    const token = jwt_utils.generateTokenForUser(savedUser, 60 * 15, {
+      email: savedUser.email
+    });
 
-    await sendMeEmailToConfirm(firstname, lastname, token, email, lang);
+    
 
+    if (await sendMeEmailToConfirm(firstname, lastname, token, email, lang)) {
     ctx.send({
       success: `email sended`,
     });
+  }
+
   },
 
   // confirm email
@@ -217,27 +257,26 @@ module.exports = {
     const token = ctx.params.token;
     const auth = jwt_utils.getUserInfo(token);
 
-    
+
     if (auth != -1) {
-      
+
       const authUser = await strapi.query("clients").update({
         _id: auth.userId,
-        status:{$ne:"blocked",}
-      },
-      {
-        email: auth.email,
-        status:(auth.status=="waiting")?"valid":auth.status,
-      }
-      );
-      console.log('auth != -1:',auth != -1)
-      console.log('\n ***** \n authUser:',authUser)
-        if (authUser == null) {
-          return ctx.send("<h1>error link, please retry </h1>");
+        status: {
+          $ne: "blocked",
         }
-         else{
-           ctx.redirect(config.urlClient + "/login");
-         }
-     
+      }, {
+        email: auth.email,
+        status: (auth.status == "waiting") ? "valid" : auth.status,
+      });
+      console.log('auth != -1:', auth != -1)
+      console.log('\n ***** \n authUser:', authUser)
+      if (authUser == null) {
+        return ctx.send("<h1>error link, please retry </h1>");
+      } else {
+        ctx.redirect(config.urlClient + "/login");
+      }
+
     } else {
       ctx.send("<h1> error: link expired</h1>");
     }
@@ -264,12 +303,15 @@ module.exports = {
         })
 
       } else {
-        const token = jwt_utils.generateTokenForUser(user, 60 * 15,{email:user.email});
-        await sendMeEmailToConfirm(user.firstname, user.lastname, token, user.email, lang);
-
-        return ctx.send({
-          success: "sended"
-        })
+        const token = jwt_utils.generateTokenForUser(user, 60 * 15, {
+          email: user.email
+        });
+        
+if (await sendMeEmailToConfirm(user.firstname, user.lastname, token, user.email, lang)) {
+  return ctx.send({
+    success: "sended"
+  })
+}
       }
     } else {
       return ctx.send({
@@ -298,25 +340,33 @@ module.exports = {
       console.log('\n -*-*--*-*-* token!', token)
 
 
-      fs.readFile(
-        __dirname + "/../../functions/templateEmail/mpmissing_" + lang + ".txt",
-        "utf-8",
-        async(err, data) => {
-          data = await data
-            .split("%firstnam%")
-            .join(infoUser.firstname)
-            .split("%lastnam%")
-            .join(infoUser.lastname)
-            .split("%linkClient%")
-            .join(config.urlClient)
-            .split("%token%")
-            .join(token);
-          sendEmail(email, "Réinitialiser Votre mot de passe", data);
-        }
-      );
-      ctx.send({
-        response: "success",
-      });
+      const send = () => {
+        return new Promise((resolve, reject) => {
+          fs.readFile(
+            __dirname + "/../../functions/templateEmail/mpmissing_" + lang + ".txt",
+            "utf-8",
+            async (err, data) => {
+              data = await data
+                .split("%firstnam%")
+                .join(infoUser.firstname)
+                .split("%lastnam%")
+                .join(infoUser.lastname)
+                .split("%linkClient%")
+                .join(config.urlClient)
+                .split("%token%")
+                .join(token);
+              sendEmail(email, "Réinitialiser Votre mot de passe", data);
+              resolve(true)
+            }
+          );
+        })
+      }
+      if (await send()) {
+        ctx.send({
+          response: "success",
+        });
+      }
+
     } else {
       ctx.send({
         response: "not Found email",
@@ -330,9 +380,9 @@ module.exports = {
     const pass = ctx.request.body.pass;
     const decodeToken = await jwt_utils.getUserInfo(token);
     //console.log("decodeToken:", decodeToken)
-//iat 
-//exp 
-//const correct = await bcrypt.compare(ctx.request.body.pass, newInfoUser.pass);
+    //iat 
+    //exp 
+    //const correct = await bcrypt.compare(ctx.request.body.pass, newInfoUser.pass);
 
 
     if (decodeToken != -1) {
@@ -343,26 +393,26 @@ module.exports = {
         });
       } else {
 
-        if ((decodeToken.exp-decodeToken.iat)>900) {
-  const user =await strapi.query("clients").findOne({
-    _id: decodeToken.userId,
-  })
-  if (!(await bcrypt.compare(ctx.request.body.omp, user.pass))) {
-    return ctx.send({
-      error: "false old Pass",
-    });
-  }
-}
+        if ((decodeToken.exp - decodeToken.iat) > 900) {
+          const user = await strapi.query("clients").findOne({
+            _id: decodeToken.userId,
+          })
+          if (!(await bcrypt.compare(ctx.request.body.omp, user.pass))) {
+            return ctx.send({
+              error: "false old Pass",
+            });
+          }
+        }
 
 
         const hashPassword = await bcrypt.hash(pass, 10);
-        
+
         const test = await strapi.query("clients").update({
           _id: decodeToken.userId,
-        },
-        {pass : hashPassword}
-        );
-        console.log('hashPassword:', test.pass ==hashPassword)
+        }, {
+          pass: hashPassword
+        });
+        console.log('hashPassword:', test.pass == hashPassword)
         return ctx.send({
           success: "success",
         });
@@ -375,82 +425,87 @@ module.exports = {
   },
 
   // change info user
-  changeUserInfo: async(ctx)=>{
- 
- 
-    const  result = await json_schema.changeUserInfo(ctx.request.body)
-  
+  changeUserInfo: async (ctx) => {
 
-    if(result.error){
+
+    const result = await json_schema.changeUserInfo(ctx.request.body)
+
+
+    if (result.error) {
       return ctx.send(result)
-    }
-    else {
+    } else {
       const body = extractInfo(ctx.request.body);
-      
-      
-      const  infouser =  await strapi.query("clients").update({
+
+
+      const infouser = await strapi.query("clients").update({
         _id: result.success.userId,
         status: "valid",
-      },body);
-      
-      if(!!infouser){
-      return ctx.send({success:getPublicInfo(infouser)})
-      }else{
-        return ctx.send({error:"no user found"})
+      }, body);
+
+      if (!!infouser) {
+        return ctx.send({
+          success: getPublicInfo(infouser)
+        })
+      } else {
+        return ctx.send({
+          error: "no user found"
+        })
       }
     }
 
   },
 
   // Edit email 
-  EditEmail:async(ctx)=>{
-    
+  EditEmail: async (ctx) => {
+
     const email = ctx.request.body.email
     console.log('ctx.request.body:', ctx.request.body)
 
     const decodeToken = jwt_utils.getUserInfo(ctx.request.body.token);
     if (decodeToken != -1) {
- 
 
-      
-    if (!(await verifyEmail(email))) {
-      return ctx.send({
-        error: "email invalid",
+
+
+      if (!(await verifyEmail(email))) {
+        return ctx.send({
+          error: "email invalid",
+        });
+      }
+
+      const newInfoUser = await strapi.query("clients").findOne({
+        _id: decodeToken.userId,
+        status_ne: "blocked",
       });
-    }
 
-    const newInfoUser = await strapi.query("clients").findOne({
-      _id: decodeToken.userId,
-      status_ne:"blocked",
-    });
+      const correct = await bcrypt.compare(ctx.request.body.pass, newInfoUser.pass);
+      console.log('\n ** pass:', ctx.request.body.pass, "\n **newInfoUser", newInfoUser.pass)
+      if (!correct) {
+        return ctx.send({
+          error: "password invalid",
+        });
+      }
 
-    const correct = await bcrypt.compare(ctx.request.body.pass, newInfoUser.pass);
-    console.log('\n ** pass:', ctx.request.body.pass,"\n **newInfoUser",newInfoUser.pass)
-    if (!correct) {
-      return ctx.send({
-        error: "password invalid",
+      const token = jwt_utils.generateTokenForUser(newInfoUser, 60 * 15, {
+        email: email.toLowerCase(),
       });
+
+     if( await sendMeEmailToConfirm(
+        newInfoUser.firstname,
+        newInfoUser.lastname,
+        token,
+        email,
+        ctx.request.body.lang
+      )){
+      ctx.send({
+        success: email
+      });}
+
+
+    } else {
+      ctx.send({
+        error: "disconnect"
+      })
     }
-
-    const token = jwt_utils.generateTokenForUser(newInfoUser, 60 * 15, {
-      email: email.toLowerCase(),
-    });
-
-    await sendMeEmailToConfirm(
-      newInfoUser.firstname,
-      newInfoUser.lastname,
-      token,
-      email, 
-      ctx.request.body.lang
-    );
-    ctx.send({
-      success: email
-    });
-
-
-  }else{
-    ctx.send({error:"disconnect"})
-  }
   },
 
   // update info
@@ -532,15 +587,15 @@ module.exports = {
             email: form.email.toLowerCase(),
           });
 
-          await sendMeEmailToConfirm(
+          if (await sendMeEmailToConfirm(
             newInfoUser.firstname,
             newInfoUser.lastname,
             token,
             form.email
-          );
+          )) {
           ctx.send({
             success: `un email de confirmation a été envoyer  à ${form.email}`,
-          });
+          })}
         } else if (operation == "password") {
           if (!verifyPass(form.newPass)) {
             return ctx.send({
@@ -688,8 +743,7 @@ module.exports = {
         actual: infoUser.promo.money.actual ? infoUser.promo.money.actual : 0,
         total: infoUser.promo.money.total ? infoUser.promo.money.total : 0,
         askToPay: infoUser.promo.money.askToPay ?
-          infoUser.promo.money.askToPay :
-          false,
+          infoUser.promo.money.askToPay : false,
       },
     };
     infoUser.promo = newPromo;
