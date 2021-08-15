@@ -520,13 +520,20 @@
         "required": [
           "id",
           "top_in_nav",
-          "top_in_page"
+          "top_in_page",
+          "format_profuct"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
+          "name_fr": {
+            "type": "string"
+          },
+          "name_en": {
+            "type": "string"
+          },
+          "name_ar": {
             "type": "string"
           },
           "slug": {
@@ -601,13 +608,20 @@
                   "required": [
                     "id",
                     "top_in_nav",
-                    "top_in_page"
+                    "top_in_page",
+                    "format_profuct"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "name": {
+                    "name_fr": {
+                      "type": "string"
+                    },
+                    "name_en": {
+                      "type": "string"
+                    },
+                    "name_ar": {
                       "type": "string"
                     },
                     "slug": {
@@ -628,6 +642,19 @@
                     "top_in_page": {
                       "type": "boolean"
                     },
+                    "format_profuct": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "Service",
+                        "Formation",
+                        "Job",
+                        "Item_and_Equipment",
+                        "Profuct",
+                        "Transport",
+                        "Other"
+                      ]
+                    },
                     "created_by": {
                       "type": "string"
                     },
@@ -646,16 +673,37 @@
           "top_in_page": {
             "type": "boolean",
             "default": false
+          },
+          "format_profuct": {
+            "type": "string",
+            "default": "none",
+            "enum": [
+              "none",
+              "Service",
+              "Formation",
+              "Job",
+              "Item_and_Equipment",
+              "Profuct",
+              "Transport",
+              "Other"
+            ]
           }
         }
       },
       "NewCategory": {
         "required": [
           "top_in_nav",
-          "top_in_page"
+          "top_in_page",
+          "format_profuct"
         ],
         "properties": {
-          "name": {
+          "name_fr": {
+            "type": "string"
+          },
+          "name_en": {
+            "type": "string"
+          },
+          "name_ar": {
             "type": "string"
           },
           "slug": {
@@ -682,13 +730,20 @@
                   "required": [
                     "id",
                     "top_in_nav",
-                    "top_in_page"
+                    "top_in_page",
+                    "format_profuct"
                   ],
                   "properties": {
                     "id": {
                       "type": "string"
                     },
-                    "name": {
+                    "name_fr": {
+                      "type": "string"
+                    },
+                    "name_en": {
+                      "type": "string"
+                    },
+                    "name_ar": {
                       "type": "string"
                     },
                     "slug": {
@@ -709,6 +764,19 @@
                     "top_in_page": {
                       "type": "boolean"
                     },
+                    "format_profuct": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "Service",
+                        "Formation",
+                        "Job",
+                        "Item_and_Equipment",
+                        "Profuct",
+                        "Transport",
+                        "Other"
+                      ]
+                    },
                     "created_by": {
                       "type": "string"
                     },
@@ -727,6 +795,20 @@
           "top_in_page": {
             "type": "boolean",
             "default": false
+          },
+          "format_profuct": {
+            "type": "string",
+            "default": "none",
+            "enum": [
+              "none",
+              "Service",
+              "Formation",
+              "Job",
+              "Item_and_Equipment",
+              "Profuct",
+              "Transport",
+              "Other"
+            ]
           },
           "created_by": {
             "type": "string"
