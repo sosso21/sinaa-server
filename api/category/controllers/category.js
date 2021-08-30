@@ -109,7 +109,7 @@ module.exports = {
      
     console.log( index, " \n -----\n \n \n \n ----")
      
-    await strapi.query("category").create(element)
+    await strapi.query("category").create({...element,Format_profuct:"none"})
      
    } 
 
