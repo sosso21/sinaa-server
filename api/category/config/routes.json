@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+    "method": "GET",
+    "path": "/category/add",
+    "handler": "category.add",
+    "config": {
+      "policies": []
+    }
+  },
+    {
       "method": "GET",
       "path": "/categories",
       "handler": "category.find",
