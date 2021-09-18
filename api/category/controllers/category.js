@@ -13,12 +13,12 @@ module.exports = {
     const entity = await strapi.services.category.findOne({ slug });
     return sanitizeEntity(entity, { model: strapi.models.category });
   },
-  
+
   async add(ctx) {
       await strapi.query("category").delete( )
 
     const db = [
-   { 
+   {
      name_fr: "Mécanique, hydraulique, pneumatique",
     name_en: "Mechanic, hydraulic, pneumatic",
      name_ar: "ميكانيك ، هيدروليك ، هوائيات",
@@ -31,7 +31,7 @@ module.exports = {
     slug:"Electricity",
    },
    {
-   name_fr: "Automatismes",	
+   name_fr: "Automatismes",
     name_en: "Automatisms",
    name_ar: "الأتمتة",
     slug:"Automatisms",
@@ -85,7 +85,7 @@ module.exports = {
     slug: "Chemistry",
    },
    {
-   name_fr: "Environnement", 
+   name_fr: "Environnement",
     name_en: "Environment, energy",
    name_ar: "البيئة والطاقة",
     slug:"Environment",
@@ -104,19 +104,20 @@ module.exports = {
    },
    ];
 
+
    for (let index = 0; index < db.length; index++) {
      const element = db[index];
-     
-    console.log( index, " \n -----\n \n \n \n ----")
-     
+
+    console.log( index, " \n -----\n \n \n \n ----\n " )
+
     await strapi.query("category").create({...element,format_profuct:"none"})
-     
-   } 
+
+   }
 
 
-    console.log("-----\n \n \n \n ----")
+    console.log("-----\n \n \n \n ---- \n ")
     ctx.sent('<h1> END  </h1>')
- 
+
 
   }
 };
