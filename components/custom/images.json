@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_custom_images",
+  "info": {
+    "name": "images",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    }
+  }
+}

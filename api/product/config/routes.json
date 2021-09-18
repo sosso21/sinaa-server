@@ -10,8 +10,8 @@
     },
     {
       "method": "GET",
-      "path": "/products/count",
-      "handler": "product.count",
+      "path": "/api/findAll",
+      "handler": "product.findAll",
       "config": {
         "policies": []
       }

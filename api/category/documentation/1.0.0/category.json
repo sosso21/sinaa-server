@@ -602,9 +602,8 @@
               "required": [
                 "id",
                 "title",
-                "description",
-                "image",
-                "status"
+                "status",
+                "description"
               ],
               "properties": {
                 "id": {
@@ -613,17 +612,8 @@
                 "title": {
                   "type": "string"
                 },
-                "description": {
-                  "type": "string"
-                },
                 "price": {
                   "type": "number"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "slug": {
-                  "type": "uid"
                 },
                 "categories": {
                   "type": "array",
@@ -631,15 +621,79 @@
                     "type": "string"
                   }
                 },
-                "Custom_field": {
-                  "type": "component"
-                },
                 "status": {
                   "type": "string",
                   "enum": [
                     "draft",
                     "published"
                   ]
+                },
+                "view": {
+                  "type": "integer"
+                },
+                "like": {
+                  "type": "integer"
+                },
+                "like_user": {
+                  "type": "component"
+                },
+                "search": {
+                  "type": "integer"
+                },
+                "lastConnect": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "adress": {
+                  "type": "component"
+                },
+                "images": {
+                  "type": "component"
+                },
+                "sector": {
+                  "type": "string"
+                },
+                "profession": {
+                  "type": "string"
+                },
+                "society": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "integer"
+                },
+                "type_work": {
+                  "type": "string",
+                  "enum": [
+                    "regional",
+                    "national"
+                  ]
+                },
+                "salary_min": {
+                  "type": "integer"
+                },
+                "salary_max": {
+                  "type": "integer"
+                },
+                "Mark": {
+                  "type": "string"
+                },
+                "typestate": {
+                  "type": "string",
+                  "enum": [
+                    "new",
+                    "almost_new",
+                    "second_hand",
+                    "rental"
+                  ]
+                },
+                "formation_category": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -707,7 +761,7 @@
                         "Formation",
                         "Job",
                         "Item_and_Equipment",
-                        "Profuct",
+                        "Product",
                         "Transport",
                         "Other"
                       ]
@@ -740,7 +794,7 @@
               "Formation",
               "Job",
               "Item_and_Equipment",
-              "Profuct",
+              "Product",
               "Transport",
               "Other"
             ]
@@ -829,7 +883,7 @@
                         "Formation",
                         "Job",
                         "Item_and_Equipment",
-                        "Profuct",
+                        "Product",
                         "Transport",
                         "Other"
                       ]
@@ -862,7 +916,7 @@
               "Formation",
               "Job",
               "Item_and_Equipment",
-              "Profuct",
+              "Product",
               "Transport",
               "Other"
             ]

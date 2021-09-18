@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_custom_like_users",
+  "info": {
+    "name": "like_user",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "clients": {
+      "collection": "clients"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}

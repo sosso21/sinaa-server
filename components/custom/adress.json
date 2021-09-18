@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_custom_adresses",
+  "info": {
+    "name": "adress",
+    "icon": "store-alt"
+  },
+  "options": {},
+  "attributes": {
+    "wilaya": {
+      "type": "string"
+    },
+    "commune": {
+      "type": "string"
+    }
+  }
+}

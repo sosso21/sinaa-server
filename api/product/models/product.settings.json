@@ -2,47 +2,25 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "product"
+    "name": "product",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "string",
-      "required": true
-    },
     "price": {
       "type": "float"
-    },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "files",
-        "images",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
     },
     "categories": {
       "via": "products",
       "collection": "category"
-    },
-    "Custom_field": {
-      "type": "component",
-      "repeatable": true,
-      "component": "custom.custom-field"
     },
     "status": {
       "type": "enumeration",
@@ -52,6 +30,83 @@
       ],
       "default": "published",
       "required": true
+    },
+    "view": {
+      "type": "integer",
+      "default": 0
+    },
+    "like": {
+      "type": "integer",
+      "default": 0
+    },
+    "like_user": {
+      "type": "component",
+      "repeatable": false,
+      "component": "custom.like-user"
+    },
+    "search": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastConnect": {
+      "type": "datetime"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "adress": {
+      "type": "component",
+      "repeatable": false,
+      "component": "custom.adress"
+    },
+    "images": {
+      "type": "component",
+      "repeatable": false,
+      "component": "custom.images"
+    },
+    "sector": {
+      "type": "string"
+    },
+    "profession": {
+      "type": "string"
+    },
+    "society": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "type_work": {
+      "type": "enumeration",
+      "enum": [
+        "regional",
+        "national"
+      ]
+    },
+    "salary_min": {
+      "type": "integer"
+    },
+    "salary_max": {
+      "type": "integer"
+    },
+    "Mark": {
+      "type": "string"
+    },
+    "typestate": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "almost_new",
+        "second_hand",
+        "rental"
+      ]
+    },
+    "formation_category": {
+      "type": "string"
     }
   }
 }

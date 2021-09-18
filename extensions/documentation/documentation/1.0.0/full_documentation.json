@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/30/2021 2:01:17 PM"
+    "x-generation-date": "09/17/2021 7:20:03 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1722,7 +1722,7 @@
         "parameters": []
       }
     },
-    "/products/count": {
+    "/api/findAll": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -1733,8 +1733,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "count": {
-                      "type": "integer"
+                    "foo": {
+                      "type": "string"
                     }
                   }
                 }
@@ -4813,9 +4813,8 @@
               "required": [
                 "id",
                 "title",
-                "description",
-                "image",
-                "status"
+                "status",
+                "description"
               ],
               "properties": {
                 "id": {
@@ -4824,17 +4823,8 @@
                 "title": {
                   "type": "string"
                 },
-                "description": {
-                  "type": "string"
-                },
                 "price": {
                   "type": "number"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "slug": {
-                  "type": "uid"
                 },
                 "categories": {
                   "type": "array",
@@ -4842,15 +4832,79 @@
                     "type": "string"
                   }
                 },
-                "Custom_field": {
-                  "type": "component"
-                },
                 "status": {
                   "type": "string",
                   "enum": [
                     "draft",
                     "published"
                   ]
+                },
+                "view": {
+                  "type": "integer"
+                },
+                "like": {
+                  "type": "integer"
+                },
+                "like_user": {
+                  "type": "component"
+                },
+                "search": {
+                  "type": "integer"
+                },
+                "lastConnect": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "adress": {
+                  "type": "component"
+                },
+                "images": {
+                  "type": "component"
+                },
+                "sector": {
+                  "type": "string"
+                },
+                "profession": {
+                  "type": "string"
+                },
+                "society": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "integer"
+                },
+                "type_work": {
+                  "type": "string",
+                  "enum": [
+                    "regional",
+                    "national"
+                  ]
+                },
+                "salary_min": {
+                  "type": "integer"
+                },
+                "salary_max": {
+                  "type": "integer"
+                },
+                "Mark": {
+                  "type": "string"
+                },
+                "typestate": {
+                  "type": "string",
+                  "enum": [
+                    "new",
+                    "almost_new",
+                    "second_hand",
+                    "rental"
+                  ]
+                },
+                "formation_category": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
@@ -4918,7 +4972,7 @@
                         "Formation",
                         "Job",
                         "Item_and_Equipment",
-                        "Profuct",
+                        "Product",
                         "Transport",
                         "Other"
                       ]
@@ -4951,7 +5005,7 @@
               "Formation",
               "Job",
               "Item_and_Equipment",
-              "Profuct",
+              "Product",
               "Transport",
               "Other"
             ]
@@ -5040,7 +5094,7 @@
                         "Formation",
                         "Job",
                         "Item_and_Equipment",
-                        "Profuct",
+                        "Product",
                         "Transport",
                         "Other"
                       ]
@@ -5073,7 +5127,7 @@
               "Formation",
               "Job",
               "Item_and_Equipment",
-              "Profuct",
+              "Product",
               "Transport",
               "Other"
             ]
@@ -5266,9 +5320,8 @@
         "required": [
           "id",
           "title",
-          "description",
-          "image",
-          "status"
+          "status",
+          "description"
         ],
         "properties": {
           "id": {
@@ -5277,81 +5330,8 @@
           "title": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
           "price": {
             "type": "number"
-          },
-          "image": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "slug": {
-            "type": "uid"
           },
           "categories": {
             "type": "array",
@@ -5401,7 +5381,7 @@
                     "Formation",
                     "Job",
                     "Item_and_Equipment",
-                    "Profuct",
+                    "Product",
                     "Transport",
                     "Other"
                   ]
@@ -5415,29 +5395,6 @@
               }
             }
           },
-          "Custom_field": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "required": {
-                  "type": "boolean"
-                },
-                "options": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "status": {
             "type": "string",
             "default": "published",
@@ -5445,27 +5402,219 @@
               "draft",
               "published"
             ]
+          },
+          "view": {
+            "type": "integer",
+            "default": 0
+          },
+          "like": {
+            "type": "integer",
+            "default": 0
+          },
+          "like_user": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "clients": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "username",
+                    "lastname",
+                    "firstname",
+                    "email",
+                    "pass",
+                    "sexe",
+                    "status"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "uid"
+                    },
+                    "lastname": {
+                      "type": "string"
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "pass": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "integer"
+                    },
+                    "birth_day": {
+                      "type": "string"
+                    },
+                    "birth_place": {
+                      "type": "string"
+                    },
+                    "sexe": {
+                      "type": "string",
+                      "enum": [
+                        "homme",
+                        "femme",
+                        "none"
+                      ]
+                    },
+                    "wilaya": {
+                      "type": "string"
+                    },
+                    "commune": {
+                      "type": "string"
+                    },
+                    "profil_image_link": {
+                      "type": "string"
+                    },
+                    "instagram": {
+                      "type": "string"
+                    },
+                    "Twitter": {
+                      "type": "string"
+                    },
+                    "facebook": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "blocked",
+                        "waiting",
+                        "valid"
+                      ]
+                    },
+                    "lastConnect": {
+                      "type": "string"
+                    },
+                    "published_at": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "date": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "search": {
+            "type": "integer",
+            "default": 0
+          },
+          "lastConnect": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "adress": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "wilaya": {
+                "type": "string"
+              },
+              "commune": {
+                "type": "string"
+              }
+            }
+          },
+          "images": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              }
+            }
+          },
+          "sector": {
+            "type": "string"
+          },
+          "profession": {
+            "type": "string"
+          },
+          "society": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "type_work": {
+            "type": "string",
+            "enum": [
+              "regional",
+              "national"
+            ]
+          },
+          "salary_min": {
+            "type": "integer"
+          },
+          "salary_max": {
+            "type": "integer"
+          },
+          "Mark": {
+            "type": "string"
+          },
+          "typestate": {
+            "type": "string",
+            "enum": [
+              "new",
+              "almost_new",
+              "second_hand",
+              "rental"
+            ]
+          },
+          "formation_category": {
+            "type": "string"
           }
         }
       },
       "NewProduct": {
         "required": [
           "title",
-          "description",
-          "status"
+          "status",
+          "description"
         ],
         "properties": {
           "title": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
           "price": {
             "type": "number"
-          },
-          "slug": {
-            "type": "uid"
           },
           "categories": {
             "type": "array",
@@ -5473,29 +5622,6 @@
               "type": "string"
             }
           },
-          "Custom_field": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "required": {
-                  "type": "boolean"
-                },
-                "options": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "status": {
             "type": "string",
             "default": "published",
@@ -5503,6 +5629,204 @@
               "draft",
               "published"
             ]
+          },
+          "view": {
+            "type": "integer",
+            "default": 0
+          },
+          "like": {
+            "type": "integer",
+            "default": 0
+          },
+          "like_user": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "clients": {
+                "type": "array",
+                "items": {
+                  "required": [
+                    "id",
+                    "username",
+                    "lastname",
+                    "firstname",
+                    "email",
+                    "pass",
+                    "sexe",
+                    "status"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "uid"
+                    },
+                    "lastname": {
+                      "type": "string"
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "pass": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "integer"
+                    },
+                    "birth_day": {
+                      "type": "string"
+                    },
+                    "birth_place": {
+                      "type": "string"
+                    },
+                    "sexe": {
+                      "type": "string",
+                      "enum": [
+                        "homme",
+                        "femme",
+                        "none"
+                      ]
+                    },
+                    "wilaya": {
+                      "type": "string"
+                    },
+                    "commune": {
+                      "type": "string"
+                    },
+                    "profil_image_link": {
+                      "type": "string"
+                    },
+                    "instagram": {
+                      "type": "string"
+                    },
+                    "Twitter": {
+                      "type": "string"
+                    },
+                    "facebook": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "blocked",
+                        "waiting",
+                        "valid"
+                      ]
+                    },
+                    "lastConnect": {
+                      "type": "string"
+                    },
+                    "published_at": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "updated_by": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "date": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "search": {
+            "type": "integer",
+            "default": 0
+          },
+          "lastConnect": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "adress": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "wilaya": {
+                "type": "string"
+              },
+              "commune": {
+                "type": "string"
+              }
+            }
+          },
+          "images": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              }
+            }
+          },
+          "sector": {
+            "type": "string"
+          },
+          "profession": {
+            "type": "string"
+          },
+          "society": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "type_work": {
+            "type": "string",
+            "enum": [
+              "regional",
+              "national"
+            ]
+          },
+          "salary_min": {
+            "type": "integer"
+          },
+          "salary_max": {
+            "type": "integer"
+          },
+          "Mark": {
+            "type": "string"
+          },
+          "typestate": {
+            "type": "string",
+            "enum": [
+              "new",
+              "almost_new",
+              "second_hand",
+              "rental"
+            ]
+          },
+          "formation_category": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"
