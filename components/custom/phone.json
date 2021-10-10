@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_custom_phones",
+  "info": {
+    "name": "phone",
+    "icon": "phone-alt"
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "integer"
+    }
+  }
+}

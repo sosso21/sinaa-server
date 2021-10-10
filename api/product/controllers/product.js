@@ -36,7 +36,7 @@ module.exports = {
     });
     const product = await strapi.query("product").find({
       "status": "published",
-      _limit: 1000,
+      _limit: 10000,
       _sort: 'createdAt:asc'
     });
 
@@ -53,7 +53,7 @@ module.exports = {
 
 
     const product = await strapi.query("product").model.find({
-      _limit: 10 000
+      _limit: 5000
     }, {
       _sort: 'lastConnect:asc'
     });

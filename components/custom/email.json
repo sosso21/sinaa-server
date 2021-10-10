@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_custom_emails",
+  "info": {
+    "name": "email",
+    "icon": "rainbow"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    }
+  }
+}

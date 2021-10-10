@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_custom_likes",
+  "info": {
+    "name": "like",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "product"
+    },
+    "liked_at": {
+      "type": "datetime"
+    }
+  }
+}

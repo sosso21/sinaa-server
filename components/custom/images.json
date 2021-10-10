@@ -2,12 +2,14 @@
   "collectionName": "components_custom_images",
   "info": {
     "name": "images",
-    "icon": "address-card"
+    "icon": "address-card",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "link": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

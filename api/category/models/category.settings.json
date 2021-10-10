@@ -23,11 +23,6 @@
     "slug": {
       "type": "uid"
     },
-    "products": {
-      "via": "categories",
-      "collection": "product",
-      "dominant": true
-    },
     "parent_category_list": {
       "type": "component",
       "repeatable": false,
@@ -57,6 +52,10 @@
       ],
       "required": true,
       "default": "none"
+    },
+    "products": {
+      "via": "category",
+      "collection": "product"
     }
   }
 }

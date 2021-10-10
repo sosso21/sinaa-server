@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_custom_contacts",
+  "info": {
+    "name": "contact",
+    "icon": "mail-bulk"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "integer"
+    }
+  }
+}

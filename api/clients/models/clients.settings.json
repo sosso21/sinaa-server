@@ -44,9 +44,6 @@
     "birth_day": {
       "type": "date"
     },
-    "birth_place": {
-      "type": "string"
-    },
     "sexe": {
       "type": "enumeration",
       "enum": [
@@ -88,6 +85,15 @@
     "lastConnect": {
       "type": "datetime",
       "private": true
+    },
+    "products": {
+      "via": "author",
+      "collection": "product"
+    },
+    "likes": {
+      "via": "likers",
+      "collection": "product",
+      "dominant": true
     }
   }
 }

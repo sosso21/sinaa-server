@@ -1,6 +1,14 @@
 {
   "routes": [
-    
+
+    {
+      "method": "GET",
+      "path": "/clients/:id",
+      "handler": "clients.findOne",
+      "config": {
+        "policies": []
+      }
+    },
     {
       "method": "POST",
       "path": "/api/connect",
@@ -122,6 +130,6 @@
       }
     }
 
-    
+
   ]
 }

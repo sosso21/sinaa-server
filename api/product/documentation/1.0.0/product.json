@@ -114,7 +114,7 @@
         "parameters": []
       }
     },
-    "/products/{slug}": {
+    "/products/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -166,7 +166,7 @@
         ],
         "parameters": [
           {
-            "name": "slug",
+            "name": "id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -176,72 +176,7 @@
             }
           }
         ]
-      }
-    },
-    "/products": {
-      "post": {
-        "deprecated": false,
-        "description": "Create a new record",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Product"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewProduct"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/products/{id}": {
+      },
       "put": {
         "deprecated": false,
         "description": "Update a record",
@@ -378,6 +313,69 @@
           }
         ]
       }
+    },
+    "/products": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new record",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewProduct"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -399,65 +397,62 @@
           "price": {
             "type": "number"
           },
-          "categories": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "top_in_nav",
-                "top_in_page",
-                "format_profuct"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name_fr": {
-                  "type": "string"
-                },
-                "name_en": {
-                  "type": "string"
-                },
-                "name_ar": {
-                  "type": "string"
-                },
-                "slug": {
-                  "type": "uid"
-                },
-                "products": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "parent_category_list": {
-                  "type": "component"
-                },
-                "top_in_nav": {
-                  "type": "boolean"
-                },
-                "top_in_page": {
-                  "type": "boolean"
-                },
-                "format_profuct": {
-                  "type": "string",
-                  "enum": [
-                    "none",
-                    "Service",
-                    "Formation",
-                    "Job",
-                    "Item_and_Equipment",
-                    "Product",
-                    "Transport",
-                    "Other"
-                  ]
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
+          "category": {
+            "required": [
+              "id",
+              "top_in_nav",
+              "top_in_page",
+              "format_profuct"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name_fr": {
+                "type": "string"
+              },
+              "name_en": {
+                "type": "string"
+              },
+              "name_ar": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "parent_category_list": {
+                "type": "component"
+              },
+              "top_in_nav": {
+                "type": "boolean"
+              },
+              "top_in_page": {
+                "type": "boolean"
+              },
+              "format_profuct": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "Service",
+                  "Formation",
+                  "Job",
+                  "Item_and_Equipment",
+                  "Product",
+                  "Transport",
+                  "Other"
+                ]
+              },
+              "products": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -477,111 +472,6 @@
             "type": "integer",
             "default": 0
           },
-          "like_user": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "clients": {
-                "type": "array",
-                "items": {
-                  "required": [
-                    "id",
-                    "username",
-                    "lastname",
-                    "firstname",
-                    "email",
-                    "pass",
-                    "sexe",
-                    "status"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "username": {
-                      "type": "uid"
-                    },
-                    "lastname": {
-                      "type": "string"
-                    },
-                    "firstname": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    },
-                    "pass": {
-                      "type": "string"
-                    },
-                    "phone": {
-                      "type": "integer"
-                    },
-                    "birth_day": {
-                      "type": "string"
-                    },
-                    "birth_place": {
-                      "type": "string"
-                    },
-                    "sexe": {
-                      "type": "string",
-                      "enum": [
-                        "homme",
-                        "femme",
-                        "none"
-                      ]
-                    },
-                    "wilaya": {
-                      "type": "string"
-                    },
-                    "commune": {
-                      "type": "string"
-                    },
-                    "profil_image_link": {
-                      "type": "string"
-                    },
-                    "instagram": {
-                      "type": "string"
-                    },
-                    "Twitter": {
-                      "type": "string"
-                    },
-                    "facebook": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "blocked",
-                        "waiting",
-                        "valid"
-                      ]
-                    },
-                    "lastConnect": {
-                      "type": "string"
-                    },
-                    "published_at": {
-                      "type": "string"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "date": {
-                "type": "string",
-                "format": "date-time"
-              }
-            }
-          },
           "search": {
             "type": "integer",
             "default": 0
@@ -594,63 +484,260 @@
             "type": "string"
           },
           "adress": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "wilaya": {
-                "type": "string"
-              },
-              "commune": {
-                "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "wilaya": {
+                  "type": "string"
+                },
+                "commune": {
+                  "type": "string"
+                }
               }
             }
           },
           "images": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "link": {
-                "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "link"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
               }
             }
           },
-          "sector": {
-            "type": "string"
+          "sector_work": {
+            "type": "string",
+            "enum": [
+              "public_administration",
+              "Agriculture",
+              "Agri_food",
+              "automobiles",
+              "Construction_and_civil_engineering",
+              "chemistry_and_para_chemistry",
+              "trade_distribution",
+              "communication_advertising_Media",
+              "Cosmetic",
+              "E_Commerce",
+              "energy_environment",
+              "Education_training",
+              "studies_advises_assistance",
+              "industry",
+              "telecom_computing",
+              "leisure_culture_sports",
+              "not_disclosed",
+              "health_social",
+              "business_services",
+              "headquarters",
+              "subcontracting",
+              "textiles",
+              "logistic_transport",
+              "wood_stone_metal_leather_work",
+              "others"
+            ]
+          },
+          "sector_product": {
+            "type": "string",
+            "enum": [
+              "Agri_food",
+              "food",
+              "chemistry_and_para_chemistry",
+              "commerce_distribution",
+              "communication_gublicity_Media",
+              "cosmetic",
+              "e_commerce",
+              "energy_environment",
+              "industry",
+              "telecom_computing",
+              "leisure_culture_sports",
+              "not_disclosed",
+              "social_health",
+              "business_services",
+              "textiles",
+              "woodwork_gjiéces_metals_leather",
+              "others"
+            ]
           },
           "profession": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Industrial_buyer",
+              "Acoustician",
+              "Computer_network_administrator",
+              "Maintenance_agent",
+              "Logistics_agent",
+              "Continuous_improvement_coordinator",
+              "Sales_assistant",
+              "Executive_assistant",
+              "HR_assistant",
+              "Electrical_equipment_winder",
+              "Forklift_operator",
+              "Business_manager",
+              "Communication_manager",
+              "Boilermaker",
+              "Team_leader",
+              "Product_manager",
+              "Mechanical_project_manager",
+              "Coach,_skills_development",
+              "Accountant",
+              "Production_line_operator",
+              "Management_controller",
+              "Cleavage",
+              "Industrial_designer",
+              "Draftsman__designer",
+              "Administrative_and_financial_director",
+              "Director_of_design_office",
+              "Commercial_director",
+              "Director_of_company",
+              "Production_manager",
+              "R&D_director",
+              "Human_resources_director",
+              "Technical_director",
+              "Electrical_technician",
+              "Ergonomist",
+              "Trainer",
+              "Technical_trainer",
+              "Milling_machine",
+              "Payroll_manager",
+              "Hydraulic_engineer",
+              "Calculation__simulation_engineer",
+              "Test_engineer",
+              "Electronic_design_engineer",
+              "Production_engineer",
+              "Electrical_engineer",
+              "Industrial_engineer",
+              "Industrial_IT_engineer",
+              "Materials_engineer",
+              "Methods_engineer",
+              "R&D_engineer",
+              "Nuclear_safety_and_dismantling_engineer",
+              "Systems_engineer",
+              "Electronic_production_integrator",
+              "Legal_expert",
+              "Mechatronics_engineer",
+              "Aluminum_carpenter",
+              "Metallier_Carpentier",
+              "Fitter__assembler",
+              "Fitter__cable_worker",
+              "Forge_operator",
+              "Production_operator",
+              "Metal_processing_operator",
+              "Foundry_operator",
+              "Operator_composite_materials",
+              "Surface_treatment_operator",
+              "Machining_operator",
+              "Toolmaker",
+              "Toolmaker",
+              "Industrial_painter",
+              "Industrial_production_system_pilot",
+              "Industrial_polisher",
+              "Technical_writer",
+              "Communication_manager",
+              "Production_unit_manager",
+              "Industrial_analysis_laboratory_manager",
+              "Training_manager",
+              "Industrial_and_logistics_management_manager",
+              "HSE_manager",
+              "Maintenance_manager",
+              "Marketing_manager",
+              "Methods_manager",
+              "Scheduling_manager",
+              "IT_project_manager",
+              "Quality_manager",
+              "HR_manager",
+              "Welder",
+              "Test_technician",
+              "Industrial_analysis_laboratory_technician",
+              "Production_technician",
+              "Electronics_test_technician",
+              "Information_systems_technician",
+              "Automation_technician",
+              "Technician_in_design_and_electronic_development",
+              "Metrology_technician",
+              "Refrigeration_and_air_conditioning_technician",
+              "HSE_technician",
+              "Industrial_IT_technician",
+              "Industrial_equipment_installation_technician",
+              "Electronic_installation_and_maintenance_technician",
+              "Logistics_technician",
+              "Maintenance_technician",
+              "Methods_technician",
+              "Photonics_technician",
+              "Quality_technician",
+              "R&D_technician",
+              "Customer_support_technician",
+              "Surface_treatment_technician",
+              "Machining_technician",
+              "Sales_technician",
+              "Turner",
+              "Industrial_pipefitter"
+            ]
           },
           "society": {
             "type": "string"
           },
-          "email": {
-            "type": "string"
-          },
-          "number": {
-            "type": "integer"
-          },
-          "type_work": {
+          "region": {
             "type": "string",
             "enum": [
               "regional",
               "national"
             ]
           },
-          "salary_min": {
-            "type": "integer"
-          },
-          "salary_max": {
-            "type": "integer"
+          "vehicle": {
+            "type": "string",
+            "enum": [
+              "car",
+              "commercial_car",
+              "pickup",
+              "mini_bus",
+              "van",
+              "truck__dump_truck",
+              "truck__refrigerated_truck",
+              "truck__isothermal",
+              "truck__tanker",
+              "truck__bucket_truck",
+              "truck__roll_amplifier",
+              "truck__tow_truck",
+              "truck__other",
+              "semi_trailer__low_loader",
+              "semi_trailer__single",
+              "semi_trailer__container_carrier",
+              "semi_trailer__tank",
+              "semi_trailer__other",
+              "Tuff_trailer",
+              "Machine__loader",
+              "Machine__mini_loader",
+              "Machine__excavator",
+              "Machine__backhoe_loader",
+              "Machine__bulldozer",
+              "Machine__scraper",
+              "Machine__steamroller",
+              "Machine__dumper",
+              "Machine__grader",
+              "Gear__others",
+              "agricultural_machinery__tractor",
+              "agricultural_machinery__combine_harvester",
+              "agricultural_machinery__forage_harvester",
+              "agricultural_machinery__harvester",
+              "agricultural_machinery__mower",
+              "agricultural_machinery__other",
+              "others"
+            ]
           },
           "Mark": {
             "type": "string"
@@ -665,7 +752,300 @@
             ]
           },
           "formation_category": {
+            "type": "string",
+            "enum": [
+              "Industry_training",
+              "Computer_training",
+              "Mechanical_Hydraulic,_Pneumatic_Training",
+              "Language_training ",
+              "Surface_treatment_training",
+              "Safety_training",
+              "Production_training",
+              "Management_training",
+              "Engineer_training",
+              "Logistics_training",
+              "Maintenance_training",
+              "Apprenticeship",
+              "Electricity_and_Electronics_training",
+              "Choice_and_use_of_materials",
+              "Commercial_training",
+              "Quality_Control_Training",
+              "Management__Communication_training",
+              "Metrology_training",
+              "Continuing_Professional_Training",
+              "Automation_training",
+              "Regulation__Instrumentation_training",
+              "Training in_aeraulics_and_ventilation",
+              "Training_in_industrial_acoustics",
+              "Construction_training_Construction__Real_estate",
+              "Environmental_training",
+              "Laboratory_training",
+              "Communication_training",
+              "Microengineering_training",
+              "Scientific_or_Mathematical_Training"
+            ]
+          },
+          "author": {
+            "required": [
+              "id",
+              "username",
+              "lastname",
+              "firstname",
+              "email",
+              "pass",
+              "sexe",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "uid"
+              },
+              "lastname": {
+                "type": "string"
+              },
+              "firstname": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "pass": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "integer"
+              },
+              "birth_day": {
+                "type": "string"
+              },
+              "sexe": {
+                "type": "string",
+                "enum": [
+                  "homme",
+                  "femme",
+                  "none"
+                ]
+              },
+              "wilaya": {
+                "type": "string"
+              },
+              "commune": {
+                "type": "string"
+              },
+              "profil_image_link": {
+                "type": "string"
+              },
+              "instagram": {
+                "type": "string"
+              },
+              "Twitter": {
+                "type": "string"
+              },
+              "facebook": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "blocked",
+                  "waiting",
+                  "valid"
+                ]
+              },
+              "lastConnect": {
+                "type": "string"
+              },
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "likes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "likers": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "username",
+                "lastname",
+                "firstname",
+                "email",
+                "pass",
+                "sexe",
+                "status"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "uid"
+                },
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "pass": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "integer"
+                },
+                "birth_day": {
+                  "type": "string"
+                },
+                "sexe": {
+                  "type": "string",
+                  "enum": [
+                    "homme",
+                    "femme",
+                    "none"
+                  ]
+                },
+                "wilaya": {
+                  "type": "string"
+                },
+                "commune": {
+                  "type": "string"
+                },
+                "profil_image_link": {
+                  "type": "string"
+                },
+                "instagram": {
+                  "type": "string"
+                },
+                "Twitter": {
+                  "type": "string"
+                },
+                "facebook": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "blocked",
+                    "waiting",
+                    "valid"
+                  ]
+                },
+                "lastConnect": {
+                  "type": "string"
+                },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "likes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "cv_link": {
             "type": "string"
+          },
+          "work_proposal": {
+            "type": "string",
+            "enum": [
+              "request",
+              "offer"
+            ]
+          },
+          "diploma": {
+            "type": "string",
+            "enum": [
+              "none",
+              "cep",
+              "bem",
+              "bac",
+              "bt",
+              "bts",
+              "licence",
+              "master",
+              "doctorat",
+              "other"
+            ]
+          },
+          "transport_service": {
+            "type": "string",
+            "enum": [
+              "none",
+              "location",
+              "driver"
+            ]
+          },
+          "email": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "phone": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "integer"
+                }
+              }
+            }
           }
         }
       },
@@ -682,11 +1062,8 @@
           "price": {
             "type": "number"
           },
-          "categories": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "category": {
+            "type": "string"
           },
           "status": {
             "type": "string",
@@ -704,111 +1081,6 @@
             "type": "integer",
             "default": 0
           },
-          "like_user": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "clients": {
-                "type": "array",
-                "items": {
-                  "required": [
-                    "id",
-                    "username",
-                    "lastname",
-                    "firstname",
-                    "email",
-                    "pass",
-                    "sexe",
-                    "status"
-                  ],
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "username": {
-                      "type": "uid"
-                    },
-                    "lastname": {
-                      "type": "string"
-                    },
-                    "firstname": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    },
-                    "pass": {
-                      "type": "string"
-                    },
-                    "phone": {
-                      "type": "integer"
-                    },
-                    "birth_day": {
-                      "type": "string"
-                    },
-                    "birth_place": {
-                      "type": "string"
-                    },
-                    "sexe": {
-                      "type": "string",
-                      "enum": [
-                        "homme",
-                        "femme",
-                        "none"
-                      ]
-                    },
-                    "wilaya": {
-                      "type": "string"
-                    },
-                    "commune": {
-                      "type": "string"
-                    },
-                    "profil_image_link": {
-                      "type": "string"
-                    },
-                    "instagram": {
-                      "type": "string"
-                    },
-                    "Twitter": {
-                      "type": "string"
-                    },
-                    "facebook": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string",
-                      "enum": [
-                        "blocked",
-                        "waiting",
-                        "valid"
-                      ]
-                    },
-                    "lastConnect": {
-                      "type": "string"
-                    },
-                    "published_at": {
-                      "type": "string"
-                    },
-                    "created_by": {
-                      "type": "string"
-                    },
-                    "updated_by": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "date": {
-                "type": "string",
-                "format": "date-time"
-              }
-            }
-          },
           "search": {
             "type": "integer",
             "default": 0
@@ -821,63 +1093,260 @@
             "type": "string"
           },
           "adress": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "wilaya": {
-                "type": "string"
-              },
-              "commune": {
-                "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "wilaya": {
+                  "type": "string"
+                },
+                "commune": {
+                  "type": "string"
+                }
               }
             }
           },
           "images": {
-            "type": "object",
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "link": {
-                "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "link"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                }
               }
             }
           },
-          "sector": {
-            "type": "string"
+          "sector_work": {
+            "type": "string",
+            "enum": [
+              "public_administration",
+              "Agriculture",
+              "Agri_food",
+              "automobiles",
+              "Construction_and_civil_engineering",
+              "chemistry_and_para_chemistry",
+              "trade_distribution",
+              "communication_advertising_Media",
+              "Cosmetic",
+              "E_Commerce",
+              "energy_environment",
+              "Education_training",
+              "studies_advises_assistance",
+              "industry",
+              "telecom_computing",
+              "leisure_culture_sports",
+              "not_disclosed",
+              "health_social",
+              "business_services",
+              "headquarters",
+              "subcontracting",
+              "textiles",
+              "logistic_transport",
+              "wood_stone_metal_leather_work",
+              "others"
+            ]
+          },
+          "sector_product": {
+            "type": "string",
+            "enum": [
+              "Agri_food",
+              "food",
+              "chemistry_and_para_chemistry",
+              "commerce_distribution",
+              "communication_gublicity_Media",
+              "cosmetic",
+              "e_commerce",
+              "energy_environment",
+              "industry",
+              "telecom_computing",
+              "leisure_culture_sports",
+              "not_disclosed",
+              "social_health",
+              "business_services",
+              "textiles",
+              "woodwork_gjiéces_metals_leather",
+              "others"
+            ]
           },
           "profession": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "Industrial_buyer",
+              "Acoustician",
+              "Computer_network_administrator",
+              "Maintenance_agent",
+              "Logistics_agent",
+              "Continuous_improvement_coordinator",
+              "Sales_assistant",
+              "Executive_assistant",
+              "HR_assistant",
+              "Electrical_equipment_winder",
+              "Forklift_operator",
+              "Business_manager",
+              "Communication_manager",
+              "Boilermaker",
+              "Team_leader",
+              "Product_manager",
+              "Mechanical_project_manager",
+              "Coach,_skills_development",
+              "Accountant",
+              "Production_line_operator",
+              "Management_controller",
+              "Cleavage",
+              "Industrial_designer",
+              "Draftsman__designer",
+              "Administrative_and_financial_director",
+              "Director_of_design_office",
+              "Commercial_director",
+              "Director_of_company",
+              "Production_manager",
+              "R&D_director",
+              "Human_resources_director",
+              "Technical_director",
+              "Electrical_technician",
+              "Ergonomist",
+              "Trainer",
+              "Technical_trainer",
+              "Milling_machine",
+              "Payroll_manager",
+              "Hydraulic_engineer",
+              "Calculation__simulation_engineer",
+              "Test_engineer",
+              "Electronic_design_engineer",
+              "Production_engineer",
+              "Electrical_engineer",
+              "Industrial_engineer",
+              "Industrial_IT_engineer",
+              "Materials_engineer",
+              "Methods_engineer",
+              "R&D_engineer",
+              "Nuclear_safety_and_dismantling_engineer",
+              "Systems_engineer",
+              "Electronic_production_integrator",
+              "Legal_expert",
+              "Mechatronics_engineer",
+              "Aluminum_carpenter",
+              "Metallier_Carpentier",
+              "Fitter__assembler",
+              "Fitter__cable_worker",
+              "Forge_operator",
+              "Production_operator",
+              "Metal_processing_operator",
+              "Foundry_operator",
+              "Operator_composite_materials",
+              "Surface_treatment_operator",
+              "Machining_operator",
+              "Toolmaker",
+              "Toolmaker",
+              "Industrial_painter",
+              "Industrial_production_system_pilot",
+              "Industrial_polisher",
+              "Technical_writer",
+              "Communication_manager",
+              "Production_unit_manager",
+              "Industrial_analysis_laboratory_manager",
+              "Training_manager",
+              "Industrial_and_logistics_management_manager",
+              "HSE_manager",
+              "Maintenance_manager",
+              "Marketing_manager",
+              "Methods_manager",
+              "Scheduling_manager",
+              "IT_project_manager",
+              "Quality_manager",
+              "HR_manager",
+              "Welder",
+              "Test_technician",
+              "Industrial_analysis_laboratory_technician",
+              "Production_technician",
+              "Electronics_test_technician",
+              "Information_systems_technician",
+              "Automation_technician",
+              "Technician_in_design_and_electronic_development",
+              "Metrology_technician",
+              "Refrigeration_and_air_conditioning_technician",
+              "HSE_technician",
+              "Industrial_IT_technician",
+              "Industrial_equipment_installation_technician",
+              "Electronic_installation_and_maintenance_technician",
+              "Logistics_technician",
+              "Maintenance_technician",
+              "Methods_technician",
+              "Photonics_technician",
+              "Quality_technician",
+              "R&D_technician",
+              "Customer_support_technician",
+              "Surface_treatment_technician",
+              "Machining_technician",
+              "Sales_technician",
+              "Turner",
+              "Industrial_pipefitter"
+            ]
           },
           "society": {
             "type": "string"
           },
-          "email": {
-            "type": "string"
-          },
-          "number": {
-            "type": "integer"
-          },
-          "type_work": {
+          "region": {
             "type": "string",
             "enum": [
               "regional",
               "national"
             ]
           },
-          "salary_min": {
-            "type": "integer"
-          },
-          "salary_max": {
-            "type": "integer"
+          "vehicle": {
+            "type": "string",
+            "enum": [
+              "car",
+              "commercial_car",
+              "pickup",
+              "mini_bus",
+              "van",
+              "truck__dump_truck",
+              "truck__refrigerated_truck",
+              "truck__isothermal",
+              "truck__tanker",
+              "truck__bucket_truck",
+              "truck__roll_amplifier",
+              "truck__tow_truck",
+              "truck__other",
+              "semi_trailer__low_loader",
+              "semi_trailer__single",
+              "semi_trailer__container_carrier",
+              "semi_trailer__tank",
+              "semi_trailer__other",
+              "Tuff_trailer",
+              "Machine__loader",
+              "Machine__mini_loader",
+              "Machine__excavator",
+              "Machine__backhoe_loader",
+              "Machine__bulldozer",
+              "Machine__scraper",
+              "Machine__steamroller",
+              "Machine__dumper",
+              "Machine__grader",
+              "Gear__others",
+              "agricultural_machinery__tractor",
+              "agricultural_machinery__combine_harvester",
+              "agricultural_machinery__forage_harvester",
+              "agricultural_machinery__harvester",
+              "agricultural_machinery__mower",
+              "agricultural_machinery__other",
+              "others"
+            ]
           },
           "Mark": {
             "type": "string"
@@ -892,7 +1361,114 @@
             ]
           },
           "formation_category": {
+            "type": "string",
+            "enum": [
+              "Industry_training",
+              "Computer_training",
+              "Mechanical_Hydraulic,_Pneumatic_Training",
+              "Language_training ",
+              "Surface_treatment_training",
+              "Safety_training",
+              "Production_training",
+              "Management_training",
+              "Engineer_training",
+              "Logistics_training",
+              "Maintenance_training",
+              "Apprenticeship",
+              "Electricity_and_Electronics_training",
+              "Choice_and_use_of_materials",
+              "Commercial_training",
+              "Quality_Control_Training",
+              "Management__Communication_training",
+              "Metrology_training",
+              "Continuing_Professional_Training",
+              "Automation_training",
+              "Regulation__Instrumentation_training",
+              "Training in_aeraulics_and_ventilation",
+              "Training_in_industrial_acoustics",
+              "Construction_training_Construction__Real_estate",
+              "Environmental_training",
+              "Laboratory_training",
+              "Communication_training",
+              "Microengineering_training",
+              "Scientific_or_Mathematical_Training"
+            ]
+          },
+          "author": {
             "type": "string"
+          },
+          "likers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cv_link": {
+            "type": "string"
+          },
+          "work_proposal": {
+            "type": "string",
+            "enum": [
+              "request",
+              "offer"
+            ]
+          },
+          "diploma": {
+            "type": "string",
+            "enum": [
+              "none",
+              "cep",
+              "bem",
+              "bac",
+              "bt",
+              "bts",
+              "licence",
+              "master",
+              "doctorat",
+              "other"
+            ]
+          },
+          "transport_service": {
+            "type": "string",
+            "enum": [
+              "none",
+              "location",
+              "driver"
+            ]
+          },
+          "email": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "phone": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "integer"
+                }
+              }
+            }
           },
           "created_by": {
             "type": "string"
