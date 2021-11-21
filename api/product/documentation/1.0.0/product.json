@@ -439,7 +439,7 @@
                   "Item_and_Equipment",
                   "Product",
                   "Transport",
-                  "Other"
+                  "Divers"
                 ]
               },
               "products": {
@@ -458,8 +458,9 @@
           },
           "status": {
             "type": "string",
-            "default": "published",
+            "default": "draft",
             "enum": [
+              "bloked",
               "draft",
               "published"
             ]
@@ -488,7 +489,9 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "wilaya",
+                "commune"
               ],
               "properties": {
                 "id": {
@@ -569,7 +572,7 @@
               "social_health",
               "business_services",
               "textiles",
-              "woodwork_gjiéces_metals_leather",
+              "woodwork_gjieces_metals_leather",
               "others"
             ]
           },
@@ -588,12 +591,11 @@
               "Electrical_equipment_winder",
               "Forklift_operator",
               "Business_manager",
-              "Communication_manager",
               "Boilermaker",
               "Team_leader",
               "Product_manager",
               "Mechanical_project_manager",
-              "Coach,_skills_development",
+              "Coach_skills_development",
               "Accountant",
               "Production_line_operator",
               "Management_controller",
@@ -605,7 +607,7 @@
               "Commercial_director",
               "Director_of_company",
               "Production_manager",
-              "R&D_director",
+              "R_D_director",
               "Human_resources_director",
               "Technical_director",
               "Electrical_technician",
@@ -624,7 +626,7 @@
               "Industrial_IT_engineer",
               "Materials_engineer",
               "Methods_engineer",
-              "R&D_engineer",
+              "R_D_engineer",
               "Nuclear_safety_and_dismantling_engineer",
               "Systems_engineer",
               "Electronic_production_integrator",
@@ -641,7 +643,6 @@
               "Operator_composite_materials",
               "Surface_treatment_operator",
               "Machining_operator",
-              "Toolmaker",
               "Toolmaker",
               "Industrial_painter",
               "Industrial_production_system_pilot",
@@ -679,7 +680,7 @@
               "Methods_technician",
               "Photonics_technician",
               "Quality_technician",
-              "R&D_technician",
+              "R_D_technician",
               "Customer_support_technician",
               "Surface_treatment_technician",
               "Machining_technician",
@@ -694,6 +695,7 @@
           "region": {
             "type": "string",
             "enum": [
+              "remote",
               "regional",
               "national"
             ]
@@ -740,7 +742,61 @@
             ]
           },
           "Mark": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "EDIMETA",
+              "HEWLETT_PACKARD",
+              "EPSON",
+              "CENPAC",
+              "BROTHER",
+              "ELBA",
+              "CANON",
+              "CEP",
+              "KARCHER",
+              "FELLOWES",
+              "AVERY",
+              "DURABLE",
+              "PILOT",
+              "LOTUS_TORK",
+              "BOTT",
+              "OXFORD",
+              "PENTEL",
+              "LEXMARK",
+              "TRODAT",
+              "LA_COURONNE",
+              "EDDING",
+              "TRESTON",
+              "LEITZ",
+              "OKI",
+              "Three_M",
+              "BIMOS",
+              "NOBO",
+              "SAMSUNG",
+              "HOLZKRAFT",
+              "STABILO",
+              "ESSELTE",
+              "TARIFOLD",
+              "DORTHZ",
+              "FACOM",
+              "NUMATIC",
+              "RICOH",
+              "TENG_TOOLS",
+              "DREUMEX",
+              "FESTOOL",
+              "REXEL",
+              "RUBBERMAID",
+              "DELL",
+              "ARDEA",
+              "SAFE_TOOL",
+              "UNILUX",
+              "VESTIBURO",
+              "SIDAMO",
+              "UHU",
+              "PLANORGA",
+              "VIKAN",
+              "STAEDTLER",
+              "other"
+            ]
           },
           "typestate": {
             "type": "string",
@@ -756,8 +812,8 @@
             "enum": [
               "Industry_training",
               "Computer_training",
-              "Mechanical_Hydraulic,_Pneumatic_Training",
-              "Language_training ",
+              "Mechanical_Hydraulic_Pneumatic_Training",
+              "Language_training",
               "Surface_treatment_training",
               "Safety_training",
               "Production_training",
@@ -775,7 +831,7 @@
               "Continuing_Professional_Training",
               "Automation_training",
               "Regulation__Instrumentation_training",
-              "Training in_aeraulics_and_ventilation",
+              "Training_in_aeraulics_and_ventilation",
               "Training_in_industrial_acoustics",
               "Construction_training_Construction__Real_estate",
               "Environmental_training",
@@ -1008,9 +1064,9 @@
           "transport_service": {
             "type": "string",
             "enum": [
-              "none",
               "location",
-              "driver"
+              "driver",
+              "other"
             ]
           },
           "email": {
@@ -1018,7 +1074,8 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "email"
               ],
               "properties": {
                 "id": {
@@ -1035,7 +1092,8 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "phone"
               ],
               "properties": {
                 "id": {
@@ -1044,6 +1102,47 @@
                 "phone": {
                   "type": "integer"
                 }
+              }
+            }
+          },
+          "service_category": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "category"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "maintenance_revision",
+                    "maintenance_repair",
+                    "installation",
+                    "measurements_and_analyzes",
+                    "studies_and_tests",
+                    "advice_and_expertise",
+                    "design_research"
+                  ]
+                }
+              }
+            }
+          },
+          "video": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "youtube": {
+                "type": "string"
               }
             }
           }
@@ -1067,8 +1166,9 @@
           },
           "status": {
             "type": "string",
-            "default": "published",
+            "default": "draft",
             "enum": [
+              "bloked",
               "draft",
               "published"
             ]
@@ -1097,7 +1197,9 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "wilaya",
+                "commune"
               ],
               "properties": {
                 "id": {
@@ -1178,7 +1280,7 @@
               "social_health",
               "business_services",
               "textiles",
-              "woodwork_gjiéces_metals_leather",
+              "woodwork_gjieces_metals_leather",
               "others"
             ]
           },
@@ -1197,12 +1299,11 @@
               "Electrical_equipment_winder",
               "Forklift_operator",
               "Business_manager",
-              "Communication_manager",
               "Boilermaker",
               "Team_leader",
               "Product_manager",
               "Mechanical_project_manager",
-              "Coach,_skills_development",
+              "Coach_skills_development",
               "Accountant",
               "Production_line_operator",
               "Management_controller",
@@ -1214,7 +1315,7 @@
               "Commercial_director",
               "Director_of_company",
               "Production_manager",
-              "R&D_director",
+              "R_D_director",
               "Human_resources_director",
               "Technical_director",
               "Electrical_technician",
@@ -1233,7 +1334,7 @@
               "Industrial_IT_engineer",
               "Materials_engineer",
               "Methods_engineer",
-              "R&D_engineer",
+              "R_D_engineer",
               "Nuclear_safety_and_dismantling_engineer",
               "Systems_engineer",
               "Electronic_production_integrator",
@@ -1250,7 +1351,6 @@
               "Operator_composite_materials",
               "Surface_treatment_operator",
               "Machining_operator",
-              "Toolmaker",
               "Toolmaker",
               "Industrial_painter",
               "Industrial_production_system_pilot",
@@ -1288,7 +1388,7 @@
               "Methods_technician",
               "Photonics_technician",
               "Quality_technician",
-              "R&D_technician",
+              "R_D_technician",
               "Customer_support_technician",
               "Surface_treatment_technician",
               "Machining_technician",
@@ -1303,6 +1403,7 @@
           "region": {
             "type": "string",
             "enum": [
+              "remote",
               "regional",
               "national"
             ]
@@ -1349,7 +1450,61 @@
             ]
           },
           "Mark": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "EDIMETA",
+              "HEWLETT_PACKARD",
+              "EPSON",
+              "CENPAC",
+              "BROTHER",
+              "ELBA",
+              "CANON",
+              "CEP",
+              "KARCHER",
+              "FELLOWES",
+              "AVERY",
+              "DURABLE",
+              "PILOT",
+              "LOTUS_TORK",
+              "BOTT",
+              "OXFORD",
+              "PENTEL",
+              "LEXMARK",
+              "TRODAT",
+              "LA_COURONNE",
+              "EDDING",
+              "TRESTON",
+              "LEITZ",
+              "OKI",
+              "Three_M",
+              "BIMOS",
+              "NOBO",
+              "SAMSUNG",
+              "HOLZKRAFT",
+              "STABILO",
+              "ESSELTE",
+              "TARIFOLD",
+              "DORTHZ",
+              "FACOM",
+              "NUMATIC",
+              "RICOH",
+              "TENG_TOOLS",
+              "DREUMEX",
+              "FESTOOL",
+              "REXEL",
+              "RUBBERMAID",
+              "DELL",
+              "ARDEA",
+              "SAFE_TOOL",
+              "UNILUX",
+              "VESTIBURO",
+              "SIDAMO",
+              "UHU",
+              "PLANORGA",
+              "VIKAN",
+              "STAEDTLER",
+              "other"
+            ]
           },
           "typestate": {
             "type": "string",
@@ -1365,8 +1520,8 @@
             "enum": [
               "Industry_training",
               "Computer_training",
-              "Mechanical_Hydraulic,_Pneumatic_Training",
-              "Language_training ",
+              "Mechanical_Hydraulic_Pneumatic_Training",
+              "Language_training",
               "Surface_treatment_training",
               "Safety_training",
               "Production_training",
@@ -1384,7 +1539,7 @@
               "Continuing_Professional_Training",
               "Automation_training",
               "Regulation__Instrumentation_training",
-              "Training in_aeraulics_and_ventilation",
+              "Training_in_aeraulics_and_ventilation",
               "Training_in_industrial_acoustics",
               "Construction_training_Construction__Real_estate",
               "Environmental_training",
@@ -1431,9 +1586,9 @@
           "transport_service": {
             "type": "string",
             "enum": [
-              "none",
               "location",
-              "driver"
+              "driver",
+              "other"
             ]
           },
           "email": {
@@ -1441,7 +1596,8 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "email"
               ],
               "properties": {
                 "id": {
@@ -1458,7 +1614,8 @@
             "items": {
               "type": "object",
               "required": [
-                "id"
+                "id",
+                "phone"
               ],
               "properties": {
                 "id": {
@@ -1467,6 +1624,47 @@
                 "phone": {
                   "type": "integer"
                 }
+              }
+            }
+          },
+          "service_category": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "category"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "maintenance_revision",
+                    "maintenance_repair",
+                    "installation",
+                    "measurements_and_analyzes",
+                    "studies_and_tests",
+                    "advice_and_expertise",
+                    "design_research"
+                  ]
+                }
+              }
+            }
+          },
+          "video": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "youtube": {
+                "type": "string"
               }
             }
           },

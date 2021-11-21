@@ -2,15 +2,18 @@
   "collectionName": "components_custom_adresses",
   "info": {
     "name": "adress",
-    "icon": "store-alt"
+    "icon": "store-alt",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "wilaya": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "commune": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

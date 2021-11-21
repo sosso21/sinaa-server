@@ -48,7 +48,7 @@
         "Item_and_Equipment",
         "Product",
         "Transport",
-        "Other"
+        "Divers"
       ],
       "required": true,
       "default": "none"

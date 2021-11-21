@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_custom_videos",
+  "info": {
+    "name": "video",
+    "icon": "video"
+  },
+  "options": {},
+  "attributes": {
+    "youtube": {
+      "type": "string"
+    }
+  }
+}
