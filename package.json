@@ -29,9 +29,7 @@
     "strapi-plugin-users-permissions": "3.6.5",
     "strapi-utils": "^3.6.5"
   },
-  "author": {
-    "name": "A Strapi developer"
-  },
+  "author": "A Strapi developer",
   "strapi": {
     "uuid": "e113f78a-42c1-443e-bbf5-11e21a12a738",
     "template": "https://github.com/strapi/strapi-template-ecommerce"
@@ -40,5 +38,7 @@
     "node": ">=10.16.0 <=14.x.x",
     "npm": "^6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/sosso21/sinaa-server"
 }
