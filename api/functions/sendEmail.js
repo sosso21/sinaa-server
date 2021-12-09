@@ -1,30 +1,33 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+var sendinBlue = require("nodemailer-sendinblue-transport");
 const config = require("./config.js");
 
+const sendEmail = (
+  targetEmail,
+  subjectEmail,
+  bodyEmail,
+  { fromEmail, apiKey } = config.email.api
+) => {
+  const transporter = nodemailer.createTransport(
+    sendinBlue({
+      apiKey: apiKey,
+    })
+  );
+ 
+  const mailOptions = {
+    from:fromEmail,
+    totargetEmail,
+    subject: subjectEmail,
+    html: bodyEmail,
+  };
 
-const sendEmail = (targetEmail, subjectEmail, bodyEmail ,{ OurEMail,passEmail}=config.email.api ) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: OurEMail,
-            pass: passEmail
-        }
-    });
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+};
 
-    const mailOptions = {
-        from: OurEMail,
-        to: targetEmail,
-        subject: subjectEmail,
-        html: bodyEmail
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return false
-        } else {
-            return true
-        }
-    });
-}
-
-module.exports = sendEmail
+module.exports = sendEmail;

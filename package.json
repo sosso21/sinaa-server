@@ -9,13 +9,13 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "bcrypt": "^5.0.1",
     "email-deep-validator": "^3.3.0",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.6.2",
+    "nodemailer-sendinblue-transport": "^1.2.3",
     "password-validator": "^5.1.1",
     "strapi": "3.6.5",
     "strapi-admin": "3.6.5",

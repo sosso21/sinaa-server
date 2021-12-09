@@ -1,15 +1,17 @@
-module.exports =  {
-  urlClient: "http://localhost:3000",
-  urlAPI: "http://localhost:1337",
-  JWT_SIGN_SECRET: "SoleilMercure1Venus2Terre3Mars4Jupiter5Saturne6Uranus7Neptune8_Kises_N_Air_Force",
+module.exports = {
+  urlClient: "http://sinaa.vercel.app",
+  urlAPI: "https://sinaa-server.herokuapp.com",
+  JWT_SIGN_SECRET:
+    "SoleilMercure1Venus2Terre3Mars4Jupiter5Saturne6Uranus7Neptune8_Kises_N_Air_Force",
+    
   email: {
     api: {
-      OurEMail: "sofianetop21.st@gmail.com",
-      passEmail: "Warzone21"
+      fromEmail: "sinaacontact.213@gmail.com",
+      apiKey: "Ca2GSTtU45RZjf7O",
     },
     newsletter: {
-      OurEMail: "sofianetop21.st@gmail.com",
-      passEmail: "Warzone21"
-    }
-  }
-}
+      fromEmail: "sinaacontact.213@gmail.com",
+      apiKey: "Ca2GSTtU45RZjf7O",
+    },
+  },
+};

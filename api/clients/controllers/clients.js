@@ -200,7 +200,8 @@ module.exports = {
         error: "short name"
       });
     }
-    if (!(await verifyEmail(email))) {
+    if (!verifyEmail(email)) {
+      console.log('verifyEmail(email): ',verifyEmail(email))
       return ctx.send({
         error: "email invalid",
       });
