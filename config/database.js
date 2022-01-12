@@ -1,20 +1,13 @@
 module.exports = ({ env }) => ({
-  defaultConnection: 'default',
-  connections: {
-    default: {
-      connector: 'mongoose',
-      settings: {
-        host: env('DATABASE_HOST', 'cluster0.7tpif.mongodb.net'),
-        srv: env.bool('DATABASE_SRV', true),
-        port: env.int('DATABASE_PORT', 27017),
-        database: env('DATABASE_NAME', 'sinaa'),
-        username: env('DATABASE_USERNAME', "admin"),
-        password: env('DATABASE_PASSWORD', "0000"),
-      },
-      options: {
-        authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
-        ssl: env.bool('DATABASE_SSL', true),
-      },
+  connection: {
+    client: 'mysql',
+    connection: {
+      host: env('DATABASE_HOST', '127.0.0.1'),
+      port: env.int('DATABASE_PORT', 3306),
+      database: env('DATABASE_NAME', 'server'),
+      user: env('DATABASE_USERNAME', 'root'),
+      password: env('DATABASE_PASSWORD', ''),
+      ssl: env.bool('DATABASE_SSL', false),
     },
   },
 });

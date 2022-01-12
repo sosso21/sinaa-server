@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_service_categorys_service_categorys",
+  "info": {
+    "displayName": "service_categorys",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "service_category": {
+      "type": "enumeration",
+      "enum": [
+        "maintenance_revision",
+        "maintenance_repair",
+        "installation",
+        "measurements_and_analyzes",
+        "studies_and_tests",
+        "advice_and_expertise",
+        "design_research",
+        "other"
+      ],
+      "required": true
+    }
+  }
+}

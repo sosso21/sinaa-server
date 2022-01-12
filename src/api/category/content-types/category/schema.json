@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categoriys",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categoriys",
+    "displayName": "category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name_en"
+    },
+    "name_en": {
+      "type": "string",
+      "required": true
+    },
+    "name_fr": {
+      "type": "string",
+      "required": true
+    },
+    "name_ar": {
+      "type": "string",
+      "required": true
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "children"
+    },
+    "children": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "parent"
+    },
+    "home": {
+      "type": "boolean",
+      "default": false
+    },
+    "format_profuct": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "Service",
+        "Formation",
+        "Job",
+        "Item_and_Equipment",
+        "Product",
+        "Transport",
+        "Divers"
+      ],
+      "required": true,
+      "default": "none"
+    },
+    "sliders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::slider.slider",
+      "inversedBy": "categories"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    },
+    "suggestion": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "suggest"
+    },
+    "suggest": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "suggestion"
+    }
+  }
+}

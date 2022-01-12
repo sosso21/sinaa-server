@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "client",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "uid",
+      "required": true,
+      "minLength": 2
+    },
+    "lastname": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "firstname": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "pass": {
+      "type": "password",
+      "required": true,
+      "private": true
+    },
+    "phones": {
+      "type": "component",
+      "repeatable": true,
+      "component": "phones.phones"
+    },
+    "birth_day": {
+      "type": "date"
+    },
+    "sexe": {
+      "type": "enumeration",
+      "enum": [
+        "boy",
+        "women",
+        "none"
+      ],
+      "default": "none",
+      "required": true
+    },
+    "profil_image_link": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "Twitter": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "blocked",
+        "waiting",
+        "valid",
+        "confirmed"
+      ],
+      "required": true,
+      "default": "waiting"
+    },
+    "lastConnect": {
+      "type": "datetime",
+      "private": true
+    },
+    "flow": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::client.client",
+      "inversedBy": "followers"
+    },
+    "followers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::client.client",
+      "inversedBy": "flow"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "author"
+    },
+    "likers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "likes"
+    },
+    "wilaya": {
+      "type": "string"
+    },
+    "commune": {
+      "type": "string"
+    },
+    "identity_card": {
+      "displayName": "identity_card",
+      "type": "component",
+      "repeatable": true,
+      "component": "identity-card.identity-card"
+    },
+    "waiting_to_confirm": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

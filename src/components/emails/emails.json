@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_emails_emails",
+  "info": {
+    "displayName": "emails",
+    "icon": "envelope"
+  },
+  "options": {},
+  "attributes": {
+    "emails": {
+      "type": "email",
+      "required": true
+    }
+  }
+}

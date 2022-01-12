@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_html_htmls",
+  "info": {
+    "displayName": "HTML",
+    "icon": "laptop-code"
+  },
+  "options": {},
+  "attributes": {
+    "en": {
+      "type": "richtext",
+      "required": true
+    },
+    "fr": {
+      "type": "richtext",
+      "required": true
+    },
+    "ar": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

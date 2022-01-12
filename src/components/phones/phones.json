@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_phones_phones",
+  "info": {
+    "displayName": "phones",
+    "icon": "phone-alt"
+  },
+  "options": {},
+  "attributes": {
+    "phone": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

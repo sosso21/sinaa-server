@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main align='center'>
+        <h1 align="center"> إعادة تعيين كلمة المرور الخاصة بك !</h1>
+        <p> سلام %firstname% %lastname%. شخص ما يحاول إعادة تعيين كلمة المرور الخاصة بك.</p>
+        <p> قبل أن نبدأ ، نحتاج فقط إلى تأكيد أنك أنت
+             <br> إذا كنت أنت ، لإجراء هذه العملية ، انقر فوق هذا الارتباط</p>
+        <a target="_blank" href="%linkClient%/password?token=%token%">%linkClient%/Password?token=... </a>
+        <br>
+        <br>
+        <p> ستنتهي صلاحية هذا الرابط في غضون 15 دقيقة </ p><br>
+        <p>إذا لم يكن الأمر متعلقًا بك ، فيرجى فقط تجاهله.<br>تفضلوا بقبول فائق الاحترام.
+        </p>
+    </main>
+</body>
+</html>

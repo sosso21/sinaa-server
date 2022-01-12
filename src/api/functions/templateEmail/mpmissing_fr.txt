@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main align='center'>
+        <h1 align="center"> Réinitialisez votre mot de passse  ! </h1>
+        <p> Bonjour %firstname% %lastname%. Quelqu'un essai de réinitialiser votre mot de passe . </p>
+        <p> Avant de commencer, nous avons juste besoin de confirmer qu'il s'agit bien de vous
+            <br> si il s'agit de vous , pour effectuer cette opération cliquez sur ce lien </p>
+        <a target="_blank" href="%linkClient%/password?token=%token%">%linkClient%/Password?token=...</a>
+        <br>
+        <br>
+        <p> ce lien expireras dans 15 mnutes </p>
+        <br>
+        <p>si il ne s'agit pas de vous veuillez tout simplement ignorer.
+            <br> Bien à vous.
+        </p>
+    </main>
+</body>
+</html>
+ 

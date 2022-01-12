@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_identity_card_identity_cards",
+  "info": {
+    "displayName": "identity_card",
+    "icon": "file-code"
+  },
+  "options": {},
+  "attributes": {
+    "card": {
+      "type": "string"
+    }
+  }
+}

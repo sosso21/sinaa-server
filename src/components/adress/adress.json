@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_adress_adresses",
+  "info": {
+    "displayName": "adress",
+    "icon": "map-marker-alt"
+  },
+  "options": {},
+  "attributes": {
+    "wilaya": {
+      "type": "string"
+    },
+    "commune": {
+      "type": "string"
+    }
+  }
+}
