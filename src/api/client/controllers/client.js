@@ -34,7 +34,7 @@ module.exports = {
 
   test: async (ctx) => {
     
-    const query =    await strapi.entityService.update("api::client.client",2,{ 
+    const query = await strapi.entityService.update("api::client.client",2,{ 
      
       populate: '*',
       data: {

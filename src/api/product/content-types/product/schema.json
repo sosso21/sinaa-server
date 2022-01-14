@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -50,13 +51,13 @@
     "adress": {
       "displayName": "adress",
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "adress.adress"
     },
     "images": {
       "displayName": "images",
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "images.images"
     },
     "sector_work": {
@@ -453,6 +454,12 @@
       "relation": "manyToMany",
       "target": "api::client.client",
       "mappedBy": "likers"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
     }
   }
 }

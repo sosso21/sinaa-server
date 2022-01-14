@@ -2,11 +2,12 @@
   "collectionName": "components_emails_emails",
   "info": {
     "displayName": "emails",
-    "icon": "envelope"
+    "icon": "envelope",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "emails": {
+    "email": {
       "type": "email",
       "required": true
     }

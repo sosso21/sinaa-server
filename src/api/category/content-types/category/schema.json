@@ -29,7 +29,7 @@
       "type": "string",
       "required": true
     },
-    "parent": {
+    "parent_category_list": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
@@ -39,7 +39,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
-      "inversedBy": "parent"
+      "inversedBy": "parent_category_list"
     },
     "home": {
       "type": "boolean",
@@ -58,7 +58,7 @@
         "Divers"
       ],
       "required": true,
-      "default": "none"
+      "default": "Divers"
     },
     "sliders": {
       "type": "relation",
@@ -69,7 +69,8 @@
     "products": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::product.product"
+      "target": "api::product.product",
+      "mappedBy": "category"
     },
     "suggestion": {
       "type": "relation",
@@ -82,6 +83,15 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "suggestion"
+    },
+    "work_proposal": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "request",
+        "offer"
+      ],
+      "default": "none"
     }
   }
 }

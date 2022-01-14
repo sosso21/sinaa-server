@@ -1,9 +1,8 @@
 module.exports = {
   urlClient: "http://sinaa.vercel.app",
   urlAPI: "https://sinaa-server.herokuapp.com",
-  JWT_SIGN_SECRET:
-    "SoleilMercure1Venus2Terre3Mars4Jupiter5Saturne6Uranus7Neptune8_Kises_N_Air_Force",
-    
+  JWT_SIGN_SECRET: "ef303e684550f9c491490fa71b206c43",
+
   email: {
     api: {
       fromEmail: "sinaacontact.213@gmail.com",
