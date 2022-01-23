@@ -9,14 +9,51 @@ const jwt_utils = require("../../functions/jwt.utils.js");
 const models = require("../content-types/product/schema.json").attributes;
 
 module.exports = {
-  find: async (ctx) => {
+  findId: async (ctx) => {
     ctx.send(
       await strapi.db.query("api::product.product").findMany({
-        populate: true,
+        select:"id",
+        where: {
+          status: "published",
+        },
       })
     );
   },
-  forClientOage: async (ctx) => {
+  findOne: async (ctx) => {
+    const id = ctx.params.id;
+    
+const  product = await strapi.db.query("api::product.product").findOne({
+  populate: true,
+  where: {
+    id: id,
+    status: "published",
+  },
+})
+const author = await strapi.db.query("api::client.client").findOne({
+  populate: true,
+  where: {
+    id: product.author.id,
+  },
+})
+
+    ctx.send(
+      {...product,author:author}
+    );
+  },
+  addView: async(ctx)=>{
+
+    const id = ctx.params.id;
+    /*
+    const phones =  await strapi.entityService.update(
+      "api::product.product",1,{
+     
+    })
+    */
+    
+    ctx.send(id  );
+
+  },
+  forClientPage: async (ctx) => {
     const decodeToken = jwt_utils.getUserInfo(ctx.request.body.token);
     if (decodeToken != -1) {
       const products = await strapi.db.query("api::product.product").findMany({
@@ -38,10 +75,22 @@ module.exports = {
 
     const decodeToken = jwt_utils.getUserInfo(body.token);
     if (decodeToken != -1) {
-     
       let data = [];
+      const banned = [
+        "id",
+        "status",
+        "token",
+        "view",
+        "like",
+        "search",
+        "reported",
+        "reports",
+        "author",
+        "likes",
+      ];
+
       for (const key in body) {
-        if (!!models[key] && !!body[key].length) {
+        if (!!models[key] && ![...banned].includes(key) && !!body[key] &&!!body[key].length) {
           data[key] = body[key];
         }
       }
@@ -51,18 +100,18 @@ module.exports = {
         {
           populate: "*",
           data: {
-            ...data,
+            ...data, 
             status: "published",
-            category:body.category,
+            category: body.category,
             author: {
               id: decodeToken.userId,
             },
           },
         }
       );
- 
+      
       ctx.send({
-        body: products,
+        success: products,
       });
     } else {
       ctx.send({
@@ -70,12 +119,66 @@ module.exports = {
       });
     }
   },
-};
-/*
-git init
-git add .
-git commit -m "first commit"
-git remote add origin https://github.com/sosso21/sinaa-server.git
-git push -u origin master
+  EditArticle: async (ctx) => {
+    const body = JSON.parse(ctx.request.body.str);
 
-  */
+    const decodeToken = jwt_utils.getUserInfo(body.token);
+    if (decodeToken != -1 && body.author.id ==decodeToken.userId ) {
+      let data = [];
+      const banned = [
+        "id",
+        "status",
+        "token",
+        "view",
+        "like",
+        "search",
+        "reported",
+        "reports",
+        "author",
+        "likes",
+      ];
+ 
+
+      for (const key in body) {
+        if (!!models[key] && ![...banned].includes(key) && !!body[key] &&!!body[key].length) {
+          data[key] = body[key];
+        }
+      }
+ 
+      const products = await strapi.entityService.update(
+        "api::product.product",body.id,
+        {
+          populate: "*",
+          data: {
+            ...data,
+            category: body.category,
+            
+          },
+        }
+        );
+        
+      ctx.send({
+        success: products,
+      });
+    } else {
+      ctx.send({
+        error: "eroor",
+      });
+    }
+  },
+  findHomePage:async(ctx)=>{
+    const product =  await strapi.db.query("api::product.product").findMany({
+      populate: true,
+      where: {
+        status: "published",
+        category:{home:true}
+      },
+    })
+
+    const category =  await strapi.db.query("api::category.category").findMany()
+    
+    const slider =  await strapi.db.query("api::slider.slider").findMany();
+    
+    ctx.send({product:product,category:category,slider:slider})
+  },
+}; 

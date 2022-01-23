@@ -17,7 +17,7 @@
     },
     "price": {
       "type": "float",
-      "required": true
+      "required": false
     },
     "status": {
       "type": "enumeration",
@@ -40,9 +40,6 @@
     "search": {
       "type": "integer",
       "default": 0
-    },
-    "lastConnect": {
-      "type": "datetime"
     },
     "description": {
       "type": "richtext",

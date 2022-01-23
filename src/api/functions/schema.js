@@ -46,15 +46,15 @@ module.exports = {
     if (obj.wilaya && !wilaya.includes(obj.wilaya) ) {
       return {error: "error wilaya"};
     }
-    if (obj.instagram &&( !(obj.instagram).includes("http") || !(obj.instagram).includes("www.") )) {
+    if (obj.instagram && !( (obj.instagram).includes("http") || (obj.instagram).includes("www.") )) {
       return {error: "error instagram"};
     }
     
-    if (obj.Twitter &&( !(obj.Twitter).includes("http") || !(obj.Twitter).includes("www.") )) {
+    if (obj.Twitter && !(  (obj.Twitter).includes("http") ||  (obj.Twitter).includes("www.") )) {
       return {error: "error Twitter"};
     }
     
-    if (obj.facebook &&( !(obj.facebook).includes("http") || !(obj.facebook).includes("www.") )) {
+    if (obj.facebook && !((obj.facebook).includes("http") ||  (obj.facebook).includes("www.") )) {
       return {error: "error facebook"};
     }
     
