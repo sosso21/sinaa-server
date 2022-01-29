@@ -60,12 +60,6 @@
       "required": true,
       "default": "Divers"
     },
-    "sliders": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::slider.slider",
-      "inversedBy": "categories"
-    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
@@ -92,6 +86,12 @@
         "offer"
       ],
       "default": "none"
+    },
+    "sliders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::slider.slider",
+      "mappedBy": "categorys"
     }
   }
 }

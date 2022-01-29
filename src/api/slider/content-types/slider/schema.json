@@ -37,16 +37,15 @@
       "component": "html.html",
       "required": false
     },
-    "home": {
-      "type": "boolean",
-      "default": true,
-      "required": true
-    },
-    "categories": {
+    "categorys": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
-      "mappedBy": "sliders"
+      "inversedBy": "sliders"
+    },
+    "home": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

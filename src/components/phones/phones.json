@@ -8,7 +8,7 @@
   "options": {},
   "attributes": {
     "phone": {
-      "type": "integer",
+      "type": "biginteger",
       "required": true
     },
     "view": {

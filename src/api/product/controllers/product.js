@@ -72,6 +72,7 @@ const author = await strapi.db.query("api::client.client").findOne({
   },
   postArticle: async (ctx) => {
     const body = JSON.parse(ctx.request.body.str);
+    
 
     const decodeToken = jwt_utils.getUserInfo(body.token);
     if (decodeToken != -1) {
@@ -175,9 +176,16 @@ const author = await strapi.db.query("api::client.client").findOne({
       },
     })
 
-    const category =  await strapi.db.query("api::category.category").findMany()
+    const category =  await strapi.db.query("api::category.category").findMany({populate:true})
+     
     
-    const slider =  await strapi.db.query("api::slider.slider").findMany();
+    const slider =  await strapi.db.query("api::slider.slider").findMany({
+      where:{
+        home:true
+      },
+      orderBy: { index: 'DESC'} ,
+      populate:true
+    });
     
     ctx.send({product:product,category:category,slider:slider})
   },
