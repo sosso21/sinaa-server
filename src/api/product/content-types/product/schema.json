@@ -16,7 +16,7 @@
       "type": "string"
     },
     "price": {
-      "type": "float",
+      "type": "biginteger",
       "required": false
     },
     "status": {
